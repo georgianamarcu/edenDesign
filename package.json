@@ -18,6 +18,8 @@
     "@use-gesture/react": "^10.2.22",
     "babel-plugin-glsl": "^1.0.0",
     "camera-controls": "^1.37.3",
+    "draco3d": "^1.5.5",
+    "draco3dgltf": "^1.5.5",
     "framer-motion": "^7.6.6",
     "konva": "^8.3.14",
     "r3f-perf": "6.5",

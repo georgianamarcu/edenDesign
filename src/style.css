@@ -31,6 +31,8 @@ body,
     flex-direction: column;
     gap: 20px;
     font-size: 14px;
+    height: 600px;
+    overflow: auto;
 }
 
 .plugElements-view {
@@ -42,7 +44,7 @@ body,
 }
 
 .plugElement-add {
-    width: 10px;
+    width: 50px;
     height: 10px;
     align-items: center;
     background-color: #636363;
@@ -68,7 +70,6 @@ body,
     -webkit-user-select: none;
     touch-action: manipulation;
     vertical-align: baseline;
-    width: auto;
 }
 
 .plugElement-add:hover,
@@ -97,4 +98,92 @@ body,
 
 .ceiling {
     display: none;
+}
+
+.rotate-option {
+    width: 100px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    color: white;
+}
+
+.rotate-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 3px;
+}
+
+.rotate-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.rotate-button {
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.449);
+    border: 1px solid rgba(206, 206, 206, 0.744);
+    border-radius: 5px;
+    box-sizing: border-box;
+    color: white;
+    cursor: pointer;
+    display: inline-flex;
+    font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    justify-content: center;
+    line-height: 0.5;
+    margin: 0;
+    min-height: 20px;
+    padding: 3px;
+    position: relative;
+    text-decoration: none;
+    transition: all 250ms;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    vertical-align: baseline;
+    width: 20px;
+}
+
+.rotate-button:hover {
+    transform: translateY(-1px);
+}
+
+.rotate-button:active {
+    background-color: #F0F0F1;
+    border-color: rgba(0, 0, 0, 0.15);
+    box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+    color: rgba(0, 0, 0, 0.65);
+    transform: translateY(0);
+}
+
+.plug-Elements-button {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+}
+
+.clear-scene {
+    gap: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+    height: 30px;
+    width: 90px;
+    border: 1px solid white;
+    font-size: 16px;
+}
+
+.clear-scene:hover,
+.clear-scene:active {
+    cursor: pointer;
+    border-color: red;
+    color: red;
 }

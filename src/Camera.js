@@ -8,13 +8,14 @@ import {
   TransformControls,
 } from "@react-three/drei";
 import { DragControls } from "./DragControls";
+import Room from "./Room";
+import { v4 as uuidv4 } from "uuid";
 import { useSnapshot } from "valtio";
 
-export default function Camera({ state, view, setView }) {
+export default function Camera({ state, view, setView, room, setRoom }) {
   let meshesArray;
   const { scene, camera, gl, size, viewport } = useThree();
   const snap = useSnapshot(state);
-  // const scenE = useThree((state) => state.scene);
   const perspectiveCamera = useRef();
   const ortographicCamera = useRef();
   const grid = useRef();
@@ -23,38 +24,47 @@ export default function Camera({ state, view, setView }) {
     ".change-perspective-button"
   );
   const { get, set } = useThree(({ get, set }) => ({ get, set }));
-  useEffect(() => {
-    if (get().camera.name === "2d") {
-      meshesArray = scene.children.filter(function (el) {
-        if (el.name !== "3d" && el.name !== "2d" && el.name !== "Group") {
-          return el.name;
-        }
-      });
-      const current = [scene.getObjectByName(snap.current)];
-      if (current[0] !== undefined) {
-        const dragControls = new DragControls(current, camera, gl.domElement);
-        dragControls.transformGroup = true;
-      }
-    } else {
-      const dragControls = new DragControls(meshesArray, camera, gl.domElement);
-      dragControls.dispose();
-    }
-  });
+  // useEffect(() => {
+  //   if (get().camera.name === "2d") {
+  //     meshesArray = scene.children.filter(function (el) {
+  //       if (el.name !== "3d" && el.name !== "2d" && el.name !== "Group") {
+  //         return el.name;
+  //       }
+  //     });
+  //     const current = [scene.getObjectByName(snap.current)];
+  //     // if (current[0] !== undefined) {
+  //     //   const dragControls = new DragControls(current, camera, gl.domElement);
+  //     //   dragControls.transformGroup = true;
+  //     // }
+  //   } else {
+  //     // const dragControls = new DragControls(meshesArray, camera, gl.domElement);
+  //     // dragControls.dispose();
+  //   }
+  // });
 
   useEffect(() => {
     const changeView = () => {
       if (get().camera.name === "2d") {
         set({ camera: perspectiveCamera.current });
-        grid.current.visible = false;
+        // grid.current.visible = false;
+        perspectiveCamera.current.lookAt(0, 0, 0);
         changePerspectiveButton.dataset.perspective = "true";
-        console.log(view);
         setView("2D");
+        setRoom([
+          ...room,
+          <Room
+            scale={[140, 140, 140]}
+            position={[300, -450, 450]}
+            key={uuidv4()}
+          />,
+        ]);
       } else {
         set({ camera: ortographicCamera.current });
         ortographicCamera.current.lookAt(0, 0, 0);
         changePerspectiveButton.dataset.perspective = "false";
-        grid.current.visible = true;
+        // grid.current.visible = true;
         setView("3D");
+        setRoom([]);
       }
     };
     changeView();
@@ -69,23 +79,32 @@ export default function Camera({ state, view, setView }) {
   };
   return (
     <>
-      {snap.current && (
+      {/* {snap.current && (
         <TransformControls
           object={scene.getObjectByName(snap.current)}
           mode={snap.mode}
-          showZ={false}
-          showX={false}
-          rotationSnap={degToRad(90)}
+          showY={false}
+          // showX={false}
+          setTranslationSnap={0.5}
+          space={"local"}
           size={0.5}
         />
-      )}
+      )} */}
       {changePerspectiveButton.dataset.perspective === "true" ? (
-        <OrbitControls ref={controls} makeDefault />
+        <OrbitControls
+          ref={controls}
+          makeDefault
+          maxPolarAngle={[Math.PI / 2]}
+          minPolarAngle={[Math.PI / 2 - 0.1]}
+          maxAzimuthAngle={[Math.PI / 2]}
+          // enableZoom={false}
+          rotateSpeed={[0.5]}
+        />
       ) : null}
       <PerspectiveCamera
         name="3d"
         ref={perspectiveCamera}
-        position={[-10, -70, 150]}
+        position={[35, -60, 300]}
         fov={75}
       />
       <OrthographicCamera
@@ -100,7 +119,7 @@ export default function Camera({ state, view, setView }) {
         top={window.innerHeight / 2}
         bottom={window.innerHeight / -2}
       />
-      <gridHelper ref={grid} args={[1500, 150, "#F1F1F1", "#6F6F6F"]} />
+      {/* <gridHelper ref={grid} args={[1500, 150, "#5A5A5A", "#5A5A5A"]} /> */}
     </>
   );
 }
