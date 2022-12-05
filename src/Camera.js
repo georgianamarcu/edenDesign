@@ -94,9 +94,9 @@ export default function Camera({ state, view, setView, room, setRoom }) {
         <OrbitControls
           ref={controls}
           makeDefault
-          maxPolarAngle={[Math.PI / 2]}
-          minPolarAngle={[Math.PI / 2 - 0.1]}
-          maxAzimuthAngle={[Math.PI / 2]}
+          // maxPolarAngle={[Math.PI / 2]}
+          // minPolarAngle={[Math.PI / 2 - 0.1]}
+          // maxAzimuthAngle={[Math.PI / 2]}
           // enableZoom={false}
           rotateSpeed={[0.5]}
         />
