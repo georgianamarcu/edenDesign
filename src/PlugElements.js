@@ -890,7 +890,7 @@ function EndFeederFemale({
   clamp = MathUtils.clamp,
   ...props
 }) {
-  const { nodes, materials } = useGLTF("/elements/EndFeeder.glb");
+  const { nodes, materials } = useGLTF("/elements/EndFeeder1.glb");
   const ref = useRef();
   const [hover, setHovered] = useState(false);
   useCursor(hover);
@@ -964,7 +964,7 @@ function EndFeederFemale({
         receiveShadow
         geometry={nodes.Body1284.geometry}
         material={materials["Aluminum - Satin"]}
-        position={[-3.91, -0.08, -4.61]}
+        position={[-3.9, 16.86, -8.29]}
         rotation={[Math.PI / 2, 0, Math.PI]}
         scale={0.1}
       />
@@ -1716,7 +1716,7 @@ function SpotCurve({
       onContextMenu={(e) => snap.current === props.name}
       dispose={null}
     >
-      <group position={[0.82, 0.32, -0.01]} rotation={[0, 0, 1.57]} scale={0.1}>
+      <group position={[0.82, 0.35, -0.01]} rotation={[0, 0, 1.57]} scale={0.1}>
         {props.state.current !== null && props.state.current === props.name ? (
           <Html distanceFactor={1}>
             <div className="rotate-option active">
