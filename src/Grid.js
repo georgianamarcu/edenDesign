@@ -16,7 +16,7 @@ const context = createContext();
 function useDrag(onDrag) {
   const events = useThree((state) => state.events);
   const controls = useThree((state) => state.controls);
-  const activatePlane = useContext(context);
+  // const activatePlane = useContext(context);
   const [hovered, hover] = useState(false);
   const [active, activate] = useState(false);
 
@@ -27,7 +27,7 @@ function useDrag(onDrag) {
     (e) => {
       e.stopPropagation();
       activate(true);
-      activatePlane(true);
+      // activatePlane(true);
       if (controls) controls.enabled = false;
       e.target.setPointerCapture(e.pointerId);
     },
@@ -37,7 +37,7 @@ function useDrag(onDrag) {
   const up = useCallback(
     (e) => {
       activate(false);
-      activatePlane(false);
+      // activatePlane(false);
       if (controls) controls.enabled = true;
       e.target.releasePointerCapture(e.pointerId);
       // Is this a bug? Apparently releasing capture flushes out hover-state, but why?
@@ -78,7 +78,7 @@ function Grid({ children, scale, divisions = 50, ...props }) {
     }
   });
 
-  const plane = useRef();
+  // const plane = useRef();
   const [active, activate] = useState(false);
   return (
     <group {...props}>

@@ -4,7 +4,6 @@ body,
     margin: 0;
     width: 100vw;
     height: 100vh;
-    background: #15151a;
 }
 
 
@@ -186,4 +185,20 @@ body,
     cursor: pointer;
     border-color: red;
     color: red;
+}
+
+.toggle-background {
+    background-color: rgba(77, 77, 77, 0.536);
+    display: flex;
+    justify-content: center;
+    border: none;
+    border-radius: 30px;
+    padding: 10px;
+    transition: all .5s ease;
+}
+
+.toggle-background:hover {
+    background-color: rgba(168, 168, 168, 0.753);
+    cursor: pointer;
+
 }
